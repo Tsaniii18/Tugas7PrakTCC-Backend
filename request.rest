@@ -1,0 +1,27 @@
+### 
+POST http://localhost:5000/users 
+Content-Type: application/json
+
+{
+"name": "tes", 
+"email": "tes@tes.com", 
+"gender": "Male",
+"password": "tes"
+}
+
+### 
+POST http://localhost:5000/login 
+Content-Type: application/json
+
+{
+"email": "tes@tes.com", 
+"password": "tes"
+}
+
+###
+DELETE http://localhost:5000/logout
+Cookie: refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InRlcyIsImVtYWlsIjoidGVzQHRlcy5jb20iLCJnZW5kZXIiOiJNYWxlIiwiY3JlYXRlZEF0IjoiMjAyNS0wNS0xM1QxNjowNjo0NC4wMDBaIiwidXBkYXRlZEF0IjoiMjAyNS0wNS0xN1QwNzo1MDo0NC4wMDBaIiwiaWF0IjoxNzQ3NTQ5OTk1LCJleHAiOjE3NDc2MzYzOTV9.DiMsTGhSIE2I4NL_JA2GA8dnXSsTgL3tFlvKpTmpBmA
+
+###
+GET http://localhost:5000/note
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InRlcyIsImVtYWlsIjoidGVzQHRlcy5jb20iLCJnZW5kZXIiOiJNYWxlIiwiY3JlYXRlZEF0IjoiMjAyNS0wNS0xM1QxNjowNjo0NC4wMDBaIiwidXBkYXRlZEF0IjoiMjAyNS0wNS0xNlQwNjowNjoyOC4wMDBaIiwiaWF0IjoxNzQ3Mzc1NTk3LCJleHAiOjE3NDczNzU2Mjd9.wOuris7NAZUdQp5IRvl1GktYnTuGXVxkbkADJcY9vd0
