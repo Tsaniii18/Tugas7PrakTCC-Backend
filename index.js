@@ -7,8 +7,20 @@ import Note from "./models/notes_model.js";
 import route from "./routes/route.js";
 
 const app = express();
+
+const allowedOrigin = 'https://a-07-451003.uc.r.appspot.com';
+
+app.use(cors({
+  origin: allowedOrigin,
+  credentials: true
+}));
+
+app.options('*', cors({
+  origin: allowedOrigin,
+  credentials: true
+}));
+
 app.use(cookieParser());
-app.use(cors({ credentials:true, origin:'https://a-07-451003.uc.r.appspot.com' }));
 app.use(express.json());
 app.use(route);
 
