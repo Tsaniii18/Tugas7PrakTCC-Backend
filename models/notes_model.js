@@ -6,7 +6,7 @@ const { DataTypes } = Sequelize;
 
 const Note = db.define('note', {
     judul: Sequelize.STRING,
-    isi: Sequelize.STRING,
+    isi: Sequelize.TEXT,
     // userId: {
     //     type: DataTypes.INTEGER,
     //     allowNull: false,
