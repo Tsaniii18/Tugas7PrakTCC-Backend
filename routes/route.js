@@ -2,7 +2,6 @@ import express from "express";
 import * as notes_controller from "../controllers/notes_controller.js";
 import * as user_controller from "../controllers/user_controller.js";
 import { verifyToken } from "../middleware/verify_token.js";
-import { refreshToken } from "../controllers/refresh_token.js";
 
 const router = express.Router();
 
@@ -13,7 +12,7 @@ router.patch('/note/:id', verifyToken, notes_controller.updateNote);
 router.delete('/note/:id', verifyToken, notes_controller.deleteNote);
 
 router.get("/users/:id", verifyToken, user_controller.getUserById);
-router.get("/token", refreshToken);
+router.get("/token", user_controller.refreshToken);
 router.post("/users", user_controller.register);
 router.post("/login", user_controller.login);
 router.delete("/logout", user_controller.logout);

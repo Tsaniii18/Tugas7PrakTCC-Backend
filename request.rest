@@ -1,11 +1,11 @@
 ### 
-POST http://localhost:5000/users 
+POST https://backend-722144796089.us-central1.run.app/users 
 Content-Type: application/json
 
 {
 "name": "tes", 
 "email": "tes@tes.com", 
-"gender": "Male",
+"gender": "Laki-laki",
 "password": "tes"
 }
 
