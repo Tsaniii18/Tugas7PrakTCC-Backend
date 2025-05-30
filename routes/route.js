@@ -11,7 +11,6 @@ router.post('/note', verifyToken, notes_controller.createNote);
 router.patch('/note/:id', verifyToken, notes_controller.updateNote);
 router.delete('/note/:id', verifyToken, notes_controller.deleteNote);
 
-router.get("/users/:id", verifyToken, user_controller.getUserById);
 router.get("/token", user_controller.refreshToken);
 router.post("/users", user_controller.register);
 router.post("/login", user_controller.login);

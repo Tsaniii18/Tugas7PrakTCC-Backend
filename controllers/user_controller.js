@@ -2,27 +2,6 @@ import User from "../models/user_model.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-export const getUserById = async (req, res) => {
-  try {
-    const user = await User.findOne({ where: { id: req.params.id } });
-    if (!user) {
-      const error = new Error("User tidak ditemukan");
-      error.statusCode = 400;
-      throw error;
-    }
-    res.status(200).json({
-      status: "Success",
-      message: "User Retrieved",
-      data: user,
-    });
-  } catch (error) {
-    res.status(error.statusCode || 500).json({
-      status: "Error",
-      message: error.message,
-    });
-  }
-}
-
 export const register = async (req, res) => {
   try {
     const { name, email, gender, password } = req.body;
