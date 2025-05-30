@@ -18,7 +18,7 @@ try {
 const app = express();
 const corsOptions = {
   origin: [
-    'https://fe-notes-115-dot-a-07-451003.uc.r.appspot.com]',
+    'https://fe-notes-115-dot-a-07-451003.uc.r.appspot.com',
     "http://localhost:3000"
   ],
   credentials: true,
