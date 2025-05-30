@@ -6,9 +6,16 @@ import User from "./models/user_model.js";
 import Note from "./models/notes_model.js";
 import route from "./routes/route.js";
 
+try {
+  await db.authenticate();
+  console.log('Databse connected');
+  await User.sync();
+  await Note.sync();
+} catch (error) {
+  console.error(error);
+}
+
 const app = express();
-
-
 const corsOptions = {
   origin: [
     'https://fe-notes-115-dot-a-07-451003.uc.r.appspot.com]',
@@ -25,16 +32,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(route);
 
-try {
-  await db.authenticate();
-  console.log('Databse connected');
-  await User.sync();
-  await Note.sync();
-} catch (error) {
-  console.error(error);
-}
-
-app.listen(5000, '0.0.0.0', () => console.log('Server up and running....'));
+app.listen(5000, () => console.log('Server up and running....'));
 
 // app.set("view engine", "ejs");
 // app.get("/", (req, res) => res.render("index"));
