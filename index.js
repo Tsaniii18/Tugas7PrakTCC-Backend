@@ -5,6 +5,10 @@ import db from "./config/database.js";
 import User from "./models/user_model.js";
 import Note from "./models/notes_model.js";
 import route from "./routes/route.js";
+import dotenv from "dotenv"; 
+dotenv.config(); 
+
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 
@@ -13,26 +17,15 @@ const allowedOrigins = [
   "http://localhost:3000"
 ];
 
-// Middleware manual CORS
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-
-  next();
-});
-
-// Optional: tetap pakai cors untuk fallback/opsional
+// Middleware CORS
 app.use(cors({
-  origin: allowedOrigins,
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true
 }));
 
@@ -40,7 +33,6 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(route);
 
-// Tes koneksi DB
 try {
   await db.authenticate();
   console.log('Database connected');
@@ -51,4 +43,5 @@ try {
 }
 
 app.get("/", (req, res) => res.send("Backend is running!"));
-app.listen(5000, () => console.log('Server up and running....'));
+
+app.listen(PORT, () => console.log(`Server up and running on port ${PORT}...`));
