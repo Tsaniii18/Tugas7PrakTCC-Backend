@@ -21,7 +21,7 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); 
 app.options("*", cors(corsOptions));
 
 app.use(cookieParser());
@@ -38,4 +38,6 @@ try {
 }
 
 app.get("/", (req, res) => res.send("Backend is running!"));
-app.listen(PORT, () => console.log('Server up and running....'));
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
+});
