@@ -1,5 +1,5 @@
 ### 
-POST https://backend-722144796089.us-central1.run.app/users 
+POST https://be-notes-115-722144796089.us-central1.run.app/users 
 Content-Type: application/json
 
 {
@@ -10,11 +10,11 @@ Content-Type: application/json
 }
 
 ### 
-POST https://backend-722144796089.us-central1.run.app/login 
+POST https://be-notes-115-722144796089.us-central1.run.app/login 
 Content-Type: application/json
 
 {
-"email": "123@123.com", 
+"email": "123@123", 
 "password": "123"
 }
 
