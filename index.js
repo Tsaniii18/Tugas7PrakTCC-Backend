@@ -10,7 +10,7 @@ import route from "./routes/route.js";
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 5000;
 
 const allowedOrigins = [
   'https://fe-notes-115-dot-a-07-451003.uc.r.appspot.com',
