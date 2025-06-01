@@ -57,7 +57,7 @@ app.use((req, res, next) => {
 });
 
 // Tangani preflight request secara eksplisit
-app.options("*", cors(corsOptions));
+app.options("/*", cors(corsOptions));
 
 app.use(cookieParser());
 app.use(express.json());
