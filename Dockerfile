@@ -4,5 +4,5 @@ COPY package*.json ./
 RUN npm install --production 
 COPY . .
 RUN npm install
-EXPOSE 5000
+EXPOSE 8081
 CMD ["node", "index.js"]
