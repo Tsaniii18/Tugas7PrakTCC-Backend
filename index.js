@@ -1,15 +1,17 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
 import db from "./config/database.js";
 import User from "./models/user_model.js";
 import Note from "./models/notes_model.js";
 import route from "./routes/route.js";
-import dotenv from "dotenv";
 dotenv.config();
 
+const app = express();
 const PORT = process.env.PORT || 8081;
 
+// Database setup
 (async () => {
   try {
     await db.authenticate();
@@ -21,8 +23,7 @@ const PORT = process.env.PORT || 8081;
   }
 })();
 
-const app = express();
-
+// CORS setup
 const allowedOrigins = [
   "https://fe-notes-115-dot-a-07-451003.uc.r.appspot.com",
   "http://localhost:3000"
@@ -41,23 +42,8 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"]
 };
 
-// Middleware CORS
 app.use(cors(corsOptions));
-
-// Tambahan manual header untuk memastikan CORS selalu direspon dengan benar
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type,Authorization");
-  next();
-});
-
-// Tangani preflight request secara eksplisit
-app.options("/*", cors(corsOptions));
+app.options("*", cors(corsOptions)); // Allow preflight
 
 app.use(cookieParser());
 app.use(express.json());
