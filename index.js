@@ -28,14 +28,16 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(route);
 
-try {
-  await db.authenticate();
-  console.log('Database connected');
-  await User.sync();
-  await Note.sync();
-} catch (error) {
-  console.error(error);
-}
+(async () => {
+  try {
+    await db.authenticate();
+    console.log('Database connected');
+    await User.sync();
+    await Note.sync();
+  } catch (error) {
+    console.error('Database error:', error);
+  }
+})();
 
 app.get("/", (req, res) => res.send("Backend is running!"));
 app.listen(PORT, '0.0.0.0', () => {
