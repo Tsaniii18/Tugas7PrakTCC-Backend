@@ -13,8 +13,8 @@ const app = express();
 const PORT = process.env.PORT || 8081;
 
 const allowedOrigins = [
-  "https://fe-notes-115-dot-a-07-451003.uc.r.appspot.com",
-  "http://localhost:3000"
+  'https://fe-notes-115-dot-a-07-451003.uc.r.appspot.com',
+  'http://localhost:3000'
 ];
 
 const corsOptions = {
